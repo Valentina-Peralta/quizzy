@@ -32,3 +32,11 @@ button {
   cursor: pointer;
   padding: 0 2rem;
 }
+
+.correct {
+  background-color: green;
+}
+
+.incorrect {
+  background-color: red;
+}
