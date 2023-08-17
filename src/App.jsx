@@ -9,10 +9,10 @@ function App() {
   const [correct, setCorrect] = useState(false)
   const [correctIndex, setCorrectIndex] = useState(-1); // Inicialmente no se selecciona ninguna opción
   const [incorrectIndex, setIncorrectIndex] = useState(-1); // Inicialmente no se selecciona ninguna opción
-
+  const [category, setCategory] = useState()
   const fetchData = async () => {
     try {
-      const response = await fetch('https://opentdb.com/api.php?amount=10&type=multiple');
+      const response = await fetch(`https://opentdb.com/api.php?amount=10&type=multiple${category}`);
       const data = await response.json();
       setQuestions(data.results)
     } catch (error) {
@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [category]);
   useEffect(() => {
     setActualQuestion(questions[questionNum - 1])
   }, [questions, questionNum])
@@ -37,11 +37,55 @@ function App() {
     setActualOptions(prev => prev.sort(() => Math.random() - 0.5))
   }, [actualQuestion]);
 
-
-
   return (
     <div className="app">
-      {questions.length > 0 ?
+      <div className="questions_options">
+        {!category && <div className="category">
+          <h3>Select category</h3>
+          <ul>
+            <li
+              onClick={() => setCategory('')}
+            >Any</li>
+            <li
+              onClick={() => setCategory('&category=9')}
+            >General knowledge</li>
+            <li
+              onClick={() => setCategory('&category=17')}
+
+            >Science & Nature</li>
+            <li
+              onClick={() => setCategory('&category=18')}
+
+            >Computers</li>
+            <li
+              onClick={() => setCategory('&category=19')}
+
+            >Mathematics</li>
+            <li
+              onClick={() => setCategory('&category=21')}
+            >Sports</li>
+            <li
+              onClick={() => setCategory('&category=22')}
+
+            >Geography</li>
+            <li
+              onClick={() => setCategory('&category=23')}
+
+            >History</li>
+            <li
+              onClick={() => setCategory('&category=25')}
+
+            >Arts</li>
+            <li
+              onClick={() => setCategory('&category=27')}
+
+            >Animals</li>
+
+          </ul>
+        </div>}
+
+      </div>
+      {category && questions.length > 0 ?
         <div className="question_wrapper">
           <p>Question {questionNum}/10</p>
           <p>{questions[questionNum - 1].question}</p>
@@ -53,7 +97,6 @@ function App() {
                 key={index}
                 onClick={() => {
                   if (option === actualQuestion.correct_answer) {
-                    console.log('correct')
                     setCorrect(true)
                     setCorrectIndex(index);
 
