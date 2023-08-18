@@ -1,0 +1,26 @@
+.category {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 4rem;
+    margin-bottom: 10rem;
+
+}
+
+.category h3 {
+    font-family: 'Bangers', cursive;
+    font-size: 2rem;
+    letter-spacing: 4px;
+}
+
+.categories {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    font-size: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.categories li {
+    cursor: pointer;
+}

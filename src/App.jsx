@@ -1,6 +1,17 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import Categories from './components/Categories'
+import Nav from './components/Nav'
+import Question from './components/Question'
+import general from './assets/books.jpg'
+import nature from './assets/nature.jpg'
+import computer from './assets/computer.jpg'
+import math from './assets/math.jpg'
+import sports from './assets/sports.jpg'
+import history from './assets/history.jpg'
+import geography from './assets/geography.jpg'
+import arts from './assets/arts.jpg'
+import animals from './assets/animals.jpg'
 
 function App() {
   const [questions, setQuestions] = useState([])
@@ -12,7 +23,7 @@ function App() {
   const [incorrectIndex, setIncorrectIndex] = useState(-1); // Inicialmente no se selecciona ninguna opción
   const [category, setCategory] = useState('')
   const [score, setScore] = useState(0)
-
+  console.log(actualQuestion)
   const fetchData = async () => {
     try {
       const response = await fetch(`https://opentdb.com/api.php?amount=10&type=multiple${category}`);
@@ -26,6 +37,7 @@ function App() {
   useEffect(() => {
     fetchData();
   }, [category]);
+
   useEffect(() => {
     setActualQuestion(questions[questionNum - 1])
   }, [questions, questionNum])
@@ -41,59 +53,37 @@ function App() {
   }, [actualQuestion]);
 
   return (
-    <div className="app">
+    <div className="app"    >
+      {category && <img className='background'
+        src={category === '&category=9' ? general : category === '&category=17' ? nature : category === '&category=18' ? computer : category === '&category=19' ? math : category === '&category=21' ? sports : category === '&category=22' ? geography : category === '&category=23' ? history : category === '&category=25' ? arts : category === '&category=27' ? animals : ''}
+        alt="" />}
+      <Nav
+        score={score}
+        category={category}
+        setCategory={setCategory} />
       <div className="questions_options">
-        {!category && <Categories
-          setCategory={setCategory} />}
+        {!category &&
+          <Categories
+            setCategory={setCategory} />}
 
       </div>
       {category && questions.length > 0 ?
         <main>
-          <h2>Score: {score}</h2>
-          <div className="question_wrapper">
-            <p>Question {questionNum}/10</p>
-            <p>{questions[questionNum - 1].question}</p>
-
-            <div className="options">
-              {actualOptions.map((option, index) =>
-                <button
-                  className={(correct === true && correctIndex === index) || (option === actualQuestion.correct_answer && correct === false && correctIndex === -1 && incorrectIndex != -1) ? 'correct' : correct === false && incorrectIndex === index ? 'incorrect' : null}
-                  key={index}
-                  onClick={() => {
-                    if (option === actualQuestion.correct_answer) {
-                      setCorrect(true)
-                      setCorrectIndex(index);
-                      setScore(prev => prev + 1)
-
-                    } else {
-                      setIncorrectIndex(index)
-                      console.log(index, correctIndex, incorrectIndex)
-
-                    }
-                  }}
-                >{option}</button>
-              )}
-            </div>
-            {questionNum < 10 ?
-              <button
-                onClick={() => {
-                  setCorrect(false)
-                  setCorrectIndex(-1)
-                  setIncorrectIndex(-1)
-                  setQuestionNum(num => num + 1)
-
-                }}
-              >
-                Next question</button>
-              :
-              <button
-                onClick={() => {
-                  fetchData()
-                  setQuestionNum(1)
-                }}
-              >Restart</button>
-            }
-          </div>
+          <Question
+            questionNum={questionNum}
+            questions={questions}
+            correct={correct}
+            setScore={setScore}
+            setCorrect={setCorrect}
+            setCorrectIndex={setCorrectIndex}
+            setIncorrectIndex={setIncorrectIndex}
+            actualQuestion={actualQuestion}
+            correctIndex={correctIndex}
+            incorrectIndex={incorrectIndex}
+            setQuestionNum={setQuestionNum}
+            fetchData={fetchData}
+            actualOptions={actualOptions}
+          />
         </main> : null
       }
 

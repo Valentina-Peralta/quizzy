@@ -1,0 +1,23 @@
+nav {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    height: 100%;
+    cursor: pointer;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    border: 1px solid red;
+    gap: 2rem;
+    font-size: 1.5rem;
+}
