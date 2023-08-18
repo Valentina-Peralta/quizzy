@@ -14,7 +14,8 @@
   gap: 3rem;
 }
 
-.question_wrapper {
+.question_wrapper,
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,4 +42,12 @@ button {
 
 .incorrect {
   background-color: red;
+}
+
+.categories {
+  list-style: none;
+}
+
+.categories li {
+  cursor: pointer;
 }
