@@ -2,7 +2,7 @@ import '../styles/Categories.css'
 const Categories = ({ setCategory }) => {
     return (
         <div className="category">
-            <h3>Select category:</h3>
+            <h3 className='pulse'>Select category:</h3>
             <ul className='categories'>
                 <li
                     onClick={() => setCategory(' ')}

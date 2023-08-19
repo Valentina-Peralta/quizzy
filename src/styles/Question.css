@@ -4,6 +4,7 @@
     align-items: center;
     gap: 1rem;
     color: #3b1201;
+    min-width: 60%;
 }
 
 .question_wrapper h3 {
@@ -40,10 +41,40 @@ button {
     color: white;
 }
 
+.transparent_btn {
+    background-color: transparent;
+    font-family: 'Bangers', cursive;
+    font-size: 1.7rem;
+    letter-spacing: 4px;
+    color: #BA3B0A;
+
+}
+
 .correct {
     background-color: rgba(4, 132, 4, 0.612);
+    animation: pulse 1s infinite;
+
 }
 
 .incorrect {
     background-color: rgba(255, 0, 0, 0.388);
+}
+
+.pulse {
+    animation: pulse 1s infinite;
+
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

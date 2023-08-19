@@ -24,6 +24,12 @@ function App() {
   const [category, setCategory] = useState('')
   const [score, setScore] = useState(0)
   console.log(actualQuestion)
+
+  const restart = () => {
+    setCategory('')
+    setScore(0)
+    setQuestionNum(1)
+  }
   const fetchData = async () => {
     try {
       const response = await fetch(`https://opentdb.com/api.php?amount=10&type=multiple${category}`);
@@ -54,13 +60,13 @@ function App() {
 
   return (
     <div className="app"    >
-      {category && <img className='background'
-        src={category === '&category=9' ? general : category === '&category=17' ? nature : category === '&category=18' ? computer : category === '&category=19' ? math : category === '&category=21' ? sports : category === '&category=22' ? geography : category === '&category=23' ? history : category === '&category=25' ? arts : category === '&category=27' ? animals : ''}
+      {<img className='background'
+        src={category === '&category=9' ? general : category === '&category=17' ? nature : category === '&category=18' ? computer : category === '&category=19' ? math : category === '&category=21' ? sports : category === '&category=22' ? geography : category === '&category=23' ? history : category === '&category=25' ? arts : category === '&category=27' ? animals : general}
         alt="" />}
       <Nav
         score={score}
         category={category}
-        setCategory={setCategory} />
+        restart={restart} />
       <div className="questions_options">
         {!category &&
           <Categories
@@ -70,6 +76,7 @@ function App() {
       {category && questions.length > 0 ?
         <main>
           <Question
+            restart={restart}
             questionNum={questionNum}
             questions={questions}
             correct={correct}

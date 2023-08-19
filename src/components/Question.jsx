@@ -1,5 +1,5 @@
 import '../styles/Question.css'
-const Question = ({ questionNum, questions, correct, setCorrect, setCorrectIndex, setIncorrectIndex, setScore, actualQuestion, correctIndex, incorrectIndex, setQuestionNum, fetchData, actualOptions }) => {
+const Question = ({ restart, questionNum, questions, correct, setCorrect, setCorrectIndex, setIncorrectIndex, setScore, actualQuestion, correctIndex, incorrectIndex, setQuestionNum, fetchData, actualOptions }) => {
     return (
         <div className="question_wrapper">
             <h3>Question {questionNum}/10</h3>
@@ -27,7 +27,7 @@ const Question = ({ questionNum, questions, correct, setCorrect, setCorrectIndex
             </div>
             {questionNum < 10 ?
                 <button
-                    className='orange_btn'
+                    className='transparent_btn'
                     onClick={() => {
                         setCorrect(false)
                         setCorrectIndex(-1)
@@ -39,12 +39,9 @@ const Question = ({ questionNum, questions, correct, setCorrect, setCorrectIndex
                     Next</button>
                 :
                 <button
+                    className='transparent_btn pulse'
                     onClick={() => {
-                        fetchData()
-                        setCorrect(false)
-                        setCorrectIndex(-1)
-                        setIncorrectIndex(-1)
-                        setQuestionNum(1)
+                        restart()
                     }}
                 >Restart</button>
             }

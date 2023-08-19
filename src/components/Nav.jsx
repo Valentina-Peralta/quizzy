@@ -1,6 +1,6 @@
 import '../styles/Nav.css'
 import quizzy from '../assets/logo.png'
-const Nav = ({ score, category, setCategory }) => {
+const Nav = ({ score, category, restart }) => {
     return (
         <>
             {category === '' ?
@@ -9,7 +9,7 @@ const Nav = ({ score, category, setCategory }) => {
 
                 </div> :
                 <nav>
-                    <img className='logo' onClick={() => setCategory('')} src={quizzy} alt="" />
+                    <img className='logo' onClick={() => restart()} src={quizzy} alt="" />
 
                     {/*  <ul>
                 <li>Categories</li>
