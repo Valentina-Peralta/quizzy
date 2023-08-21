@@ -1,9 +1,9 @@
 import '../styles/Nav.css'
 import quizzy from '../assets/logo.png'
-const Nav = ({ score, category, restart }) => {
+const Nav = ({ difficulty, score, category, restart }) => {
     return (
         <>
-            {category === '' ?
+            {category === '' || difficulty === '' ?
                 <div>
                     <img className='logo' src={quizzy} alt="" />
 

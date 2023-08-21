@@ -12,6 +12,7 @@ import history from './assets/history.jpg'
 import geography from './assets/geography.jpg'
 import arts from './assets/arts.jpg'
 import animals from './assets/animals.jpg'
+import Difficulty from './components/Difficulty'
 
 function App() {
   const [questions, setQuestions] = useState([])
@@ -22,17 +23,19 @@ function App() {
   const [correctIndex, setCorrectIndex] = useState(-1); // Inicialmente no se selecciona ninguna opción
   const [incorrectIndex, setIncorrectIndex] = useState(-1); // Inicialmente no se selecciona ninguna opción
   const [category, setCategory] = useState('')
+  const [difficulty, setDifficulty] = useState('')
   const [score, setScore] = useState(0)
   console.log(actualQuestion)
 
   const restart = () => {
     setCategory('')
+    setDifficulty('')
     setScore(0)
     setQuestionNum(1)
   }
   const fetchData = async () => {
     try {
-      const response = await fetch(`https://opentdb.com/api.php?amount=10&type=multiple${category}`);
+      const response = await fetch(`https://opentdb.com/api.php?amount=10&type=multiple${category}${difficulty}`);
       const data = await response.json();
       setQuestions(data.results)
     } catch (error) {
@@ -64,6 +67,7 @@ function App() {
         src={category === '&category=9' ? general : category === '&category=17' ? nature : category === '&category=18' ? computer : category === '&category=19' ? math : category === '&category=21' ? sports : category === '&category=22' ? geography : category === '&category=23' ? history : category === '&category=25' ? arts : category === '&category=27' ? animals : general}
         alt="" />}
       <Nav
+        difficulty={difficulty}
         score={score}
         category={category}
         restart={restart} />
@@ -71,9 +75,14 @@ function App() {
         {!category &&
           <Categories
             setCategory={setCategory} />}
-
+        {category && !difficulty &&
+          <Difficulty
+            difficulty={difficulty}
+            setDifficulty={setDifficulty}
+          />
+        }
       </div>
-      {category && questions.length > 0 ?
+      {category && difficulty && questions.length > 0 ?
         <main>
           <Question
             restart={restart}
