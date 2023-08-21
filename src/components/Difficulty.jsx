@@ -12,7 +12,7 @@ const Difficulty = ({ difficulty, setDifficulty }) => {
                     onClick={() => setDifficulty('&difficulty=easy')}
                 >Easy</li>
                 <li
-                    onClick={() => setCategory('&difficulty=medium')}
+                    onClick={() => setDifficulty('&difficulty=medium')}
 
                 >Medium</li>
                 <li

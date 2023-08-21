@@ -5,7 +5,7 @@ const Nav = ({ difficulty, score, category, restart }) => {
         <>
             {category === '' || difficulty === '' ?
                 <div>
-                    <img className='logo' src={quizzy} alt="" />
+                    <img className='logo' onClick={() => restart()} src={quizzy} alt="" />
 
                 </div> :
                 <nav>
