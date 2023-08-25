@@ -1,8 +1,15 @@
-# React + Vite
+# Quizzy 
+![image](https://github.com/Valentina-Peralta/quizzy/assets/125395224/14cf90bc-1197-4325-8740-fcb0f4d3cde4)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Quizzy is a React-based quiz application that fetches questions from the Open Trivia Database (https://opentdb.com/api_config.php) API. This app allows users to test their knowledge by answering questions from various categories and difficulty levels.
 
-Currently, two official plugins are available:
+## Features
+- Choose from a variety of quiz categories.
+- Select the desired difficulty level for the questions.
+- Real-time score tracking.
+- Immediate feedback on correct and incorrect answers.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Demo
+You can try out the Quizzy app by visiting https://quizzy-flame.vercel.app/.
+
+
